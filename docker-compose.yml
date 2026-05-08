@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:4000/api/v1
+    depends_on:
+      - backend
+    networks:
+      - havana-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/havana
+    depends_on:
+      - postgres
+    networks:
+      - havana-network
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: havana
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - havana-network
+
+networks:
+  havana-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

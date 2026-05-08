@@ -1,0 +1,24 @@
+{
+  "name": "havana-wallet-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Financial freedom for every displaced person. Built on Stellar.",
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter havana-backend dev",
+    "build:contracts": "cd contracts && make build",
+    "test:contracts": "cd contracts && cargo test",
+    "lint:contracts": "cd contracts && cargo clippy",
+    "audit:all": "pnpm run lint:contracts && pnpm run test:contracts"
+  },
+  "keywords": [
+    "stellar",
+    "soroban",
+    "rwa",
+    "identity",
+    "refugee",
+    "fintech"
+  ],
+  "author": "Havana Team",
+  "license": "MIT"
+}

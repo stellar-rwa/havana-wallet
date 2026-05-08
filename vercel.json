@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm --filter frontend build",
+  "outputDirectory": "frontend/.next",
+  "framework": "nextjs",
+  "installCommand": "pnpm install",
+  "rewrites": [
+    {
+      "source": "/api/v1/:path*",
+      "destination": "https://your-backend-url.com/api/v1/:path*"
+    }
+  ]
+}
