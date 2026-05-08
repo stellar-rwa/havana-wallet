@@ -1,7 +1,7 @@
 // frontend/src/components/ui/Button.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -9,7 +9,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
@@ -46,7 +46,7 @@ export const Button = ({
         sizes[size],
         className
       )}
-      {...(props as any)}
+      {...(props as HTMLMotionProps<"button">)}
     >
       {isLoading ? "Loading..." : children}
     </motion.button>

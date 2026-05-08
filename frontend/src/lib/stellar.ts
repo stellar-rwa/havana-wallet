@@ -1,14 +1,7 @@
 // frontend/src/lib/stellar.ts
 import {
   Horizon,
-  Soroban,
-  TransactionBuilder,
   Networks,
-  BASE_FEE,
-  Contract,
-  nativeToScVal,
-  Address,
-  xdr,
   rpc,
 } from "@stellar/stellar-sdk";
 
@@ -44,6 +37,7 @@ export const getAccountBalance = async (
 ): Promise<string> => {
   const account = await horizonServer.loadAccount(address);
   const balance = account.balances.find(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (b: any) =>
       b.asset_type !== "native" &&
       b.asset_code === assetCode &&

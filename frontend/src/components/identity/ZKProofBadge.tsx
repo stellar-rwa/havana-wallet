@@ -8,20 +8,3 @@ export const ZKProofBadge = ({ verified }: { verified: boolean }) => (
     {verified ? 'ZK Verified' : 'Pending Verification'}
   </div>
 );
-
-// frontend/src/components/identity/IdentityCard.tsx
-"use client";
-import { Card } from "@/components/ui/Card";
-
-export const IdentityCard = () => (
-  <Card className="w-full aspect-[1.6/1] flex flex-col justify-between">
-    <div className="flex justify-between items-start">
-      <span className="text-lg font-bold font-space-grotesk text-accent-primary">HAVANA ID</span>
-      <div className="w-8 h-8 rounded bg-surface-elevated"></div>
-    </div>
-    <div className="mt-auto">
-      <p className="text-[10px] text-text-tertiary uppercase">Refugee Identity Commitment</p>
-      <p className="font-space-mono text-xs text-text-secondary truncate">0x7a2...4f9b</p>
-    </div>
-  </Card>
-);

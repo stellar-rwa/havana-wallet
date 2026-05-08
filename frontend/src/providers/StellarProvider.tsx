@@ -15,7 +15,8 @@ export const StellarProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    setIsReady(true);
+    const handle = requestAnimationFrame(() => setIsReady(true));
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   return (

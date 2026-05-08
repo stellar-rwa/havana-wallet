@@ -1,0 +1,45 @@
+
+/home/zapha/Org/havana-wallet/frontend/src/components/ui/Button.tsx
+  49:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/zapha/Org/havana-wallet/frontend/src/components/ui/Skeleton.tsx
+   7:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  18:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/zapha/Org/havana-wallet/frontend/src/components/wallet/BalanceCard.tsx
+  13:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  21:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/zapha/Org/havana-wallet/frontend/src/lib/freighter.ts
+  7:3  warning  'signTransaction' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/zapha/Org/havana-wallet/frontend/src/lib/stellar.ts
+   4:3  warning  'Soroban' is defined but never used             @typescript-eslint/no-unused-vars
+   5:3  warning  'TransactionBuilder' is defined but never used  @typescript-eslint/no-unused-vars
+   7:3  warning  'BASE_FEE' is defined but never used            @typescript-eslint/no-unused-vars
+   8:3  warning  'Contract' is defined but never used            @typescript-eslint/no-unused-vars
+   9:3  warning  'nativeToScVal' is defined but never used       @typescript-eslint/no-unused-vars
+  10:3  warning  'Address' is defined but never used             @typescript-eslint/no-unused-vars
+  11:3  warning  'xdr' is defined but never used                 @typescript-eslint/no-unused-vars
+  47:9  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+/home/zapha/Org/havana-wallet/frontend/src/providers/StellarProvider.tsx
+  18:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/zapha/Org/havana-wallet/frontend/src/providers/StellarProvider.tsx:18:5
+  16 |
+  17 |   useEffect(() => {
+> 18 |     setIsReady(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |   }, []);
+  20 |
+  21 |   return (  react-hooks/set-state-in-effect
+
+✖ 15 problems (3 errors, 12 warnings)
+
