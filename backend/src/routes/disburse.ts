@@ -3,7 +3,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/:id/status', (_req, res) => {
+router.get('/:id/status', (req, res) => {
   res.json({ id: req.params.id, status: 'SUCCESS', count: 1240 });
 });
 

@@ -2,7 +2,7 @@
 import { horizonServer } from '../utils/stellar';
 
 export class StellarService {
-  static async getTransactionHistory(_address: string) {
+  static async getTransactionHistory(address: string) {
     return await horizonServer.transactions().forAccount(address).call();
   }
 
