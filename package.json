@@ -9,7 +9,8 @@
     "build:contracts": "cd contracts && make build",
     "test:contracts": "cd contracts && cargo test",
     "lint:contracts": "cd contracts && cargo clippy",
-    "audit:all": "pnpm run lint:contracts && pnpm run test:contracts"
+    "coverage:contracts": "cd contracts && cargo tarpaulin --ignore-tests --skip-clean",
+    "audit:all": "pnpm run lint:contracts && pnpm run build:contracts && pnpm run test:contracts"
   },
   "keywords": [
     "stellar",
