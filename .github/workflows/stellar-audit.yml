@@ -1,0 +1,49 @@
+name: Stellar Smart Contract Audit
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths:
+      - 'contracts/**'
+  pull_request:
+    branches: [ main, dev ]
+    paths:
+      - 'contracts/**'
+
+jobs:
+  audit:
+    name: Audit & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+          targets: wasm32v1-none
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            contracts/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Run Format Check
+        run: cargo fmt --all -- --check
+        working-directory: contracts
+
+      - name: Run Clippy
+        run: cargo clippy -- -D warnings
+        working-directory: contracts
+
+      - name: Run Tests
+        run: cargo test
+        working-directory: contracts
+
+      - name: Build WASM
+        run: cargo build --target wasm32v1-none --release
+        working-directory: contracts
