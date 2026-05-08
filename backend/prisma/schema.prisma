@@ -1,0 +1,36 @@
+// backend/prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+model User {
+  id             String   @id @default(uuid())
+  address        String   @unique
+  role           Role     @default(REFUGEE)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  identityRecord Identity?
+}
+
+model Identity {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @unique
+  commitment String
+  isVerified Boolean  @default(false)
+  issuedAt   DateTime
+  expiresAt  DateTime
+}
+
+enum Role {
+  REFUGEE
+  NGO
+  EMPLOYER
+  MERCHANT
+}
